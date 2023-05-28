@@ -91,29 +91,38 @@ const determineGameResult = (state: GameState): GameResult => {
 
   if (playerScore > 21) {
     return "dealer_win";
-  } else if (dealerScore > 21) {
+  }
+
+  if (dealerScore > 21) {
     return "player_win";
-  } else if (
+  }
+
+  if (
     playerScore === 21 &&
     state.playerHand.length === 2 &&
     (dealerScore !== 21 ||
       (dealerScore === 21 && state.dealerHand.length !== 2))
   ) {
     return "player_win";
-  } else if (
+  }
+
+  if (
     dealerScore === 21 &&
     state.dealerHand.length === 2 &&
     (playerScore !== 21 ||
       (playerScore === 21 && state.playerHand.length !== 2))
   ) {
     return "dealer_win";
-  } else if (playerScore === dealerScore) {
-    return "draw";
-  }  else if (playerScore > dealerScore) {
-    return "player_win";
-  } else {
-    return "dealer_win";
   }
+
+  if (playerScore === dealerScore) {
+    return "draw";
+  }
+
+  if (playerScore > dealerScore) {
+    return "player_win";
+  }
+  return "dealer_win";
 };
 
 // Player Actions
